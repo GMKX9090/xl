@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>月考D</title>
+	<style type="text/css">
+		div{
+			width: 500px;
+			height: 500px;
+			background: url(../img/g.jpg);
+			margin:auto;
+		}
+		table{
+			width: 500px;
+		}
+		button{
+			width:150px;
+			height: 30px;
+			border:0;
+			border-radius: 10%;
+			background: orange;
+		}
+		td{
+			color: orange;
+			font-size: 28px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<br>
+		<button>全部删除</button>
+		<button>选中删除</button>
+		<br><br>
+		<input type="text" placeholder="请输入关键字" style="height:20px; width:150px;">
+		<input type="button" value="搜索" style="margin-left:-3px;padding-bottom:4px;">
+		<br><br>
+		<table border="1" cellspacing="0">
+			<tr>
+				<th><input type="checkbox" class="boss">全选</th>
+				<th>序列号</th>
+				<th>商品</th>
+				<th>价格</th>
+				<th>产地</th>
+				<th>品牌</th>
+				<th>操作</th>
+			</tr>
+			<tr>
+				<td><input type="checkbox" class="box"></td>
+				<td class="xl">1</td>
+				<td class="sp">榴莲</td>
+				<td>20元</td>
+				<td>海南</td>
+				<td>宝强牌</td>
+				<td class="del">删除</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" class="box"></td>
+				<td class="xl">2</td>
+				<td class="sp">香蕉</td>
+				<td>20元</td>
+				<td>海南</td>
+				<td>宝强牌</td>
+				<td class="del">删除</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" class="box"></td>
+				<td class="xl">3</td>
+				<td class="sp">葡萄</td>
+				<td>40元</td>
+				<td>新疆</td>
+				<td>步云牌</td>
+				<td class="del">删除</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" class="box"></td>
+				<td class="xl">4</td>
+				<td class="sp">芒果</td>
+				<td>30元</td>
+				<td>海南</td>
+				<td>光荣牌</td>
+				<td class="del">删除</td>
+			</tr>
+		</table>
+	</div>
+</body>
+	<script type="text/javascript">
+		var tbo=document.getElementsByTagName('tbody')[0];
+		var inp=document.getElementsByTagName('input');
+		var but=document.getElementsByTagName('button');
+		var boss=document.getElementsByClassName('boss')[0];
+		var box=document.getElementsByClassName('box');
+		
+		// 全选
+		boss.onclick=function(){
+			var box=document.getElementsByClassName('box');
+			for(var x=0;x<box.length;x++){
+				if(box[x].checked==true){
+					box[x].checked=false;
+				}else{
+					box[x].checked=true;
+				}
+			}
+		}		
+		// 全部删除
+		
+		but[0].onclick=function(){
+			var tr=document.getElementsByTagName('tr');
+			for(var i=1;i<tr.length;i++){
+				tbo.removeChild(tr[i]);
+				i--;
+			}
+		}
+		// 选中删除
+		but[1].onclick=function(){
+			var box=document.getElementsByClassName('box');
+			for(var b=0;b<box.length;b++){
+				if(box[b].checked==true){
+					tbo.removeChild(box[b].parentNode.parentNode);
+					b--;
+				}	
+			}
+		}
+		// 单行删除
+		var del=document.getElementsByClassName('del');
+		for(var d=0;d<del.length;d++){
+			del[d].onclick=function(){
+				this.parentNode.parentNode.removeChild(this.parentNode)
+			}
+		}
+		
+		// 搜索	
+		inp[1].onclick=function(){
+			var sp=document.getElementsByClassName('sp');
+			var inp=document.getElementsByTagName('input');
+			for(var s=0;s<sp.length;s++){
+				if(inp[0].value==sp[s].innerHTML){
+					sp[s].parentNode.style.background="red";
+				}else{
+					sp[s].parentNode.style.background=null;
+				}
+			}
+			
+		}
+		// 移动背景颜色
+		var tr=document.getElementsByTagName('tr');
+		for(var t=1;t<tr.length;t++){
+			tr[t].onmouseover=function(){
+				this.style.background="pink";
+			}
+			tr[t].onmouseout=function(){
+				this.style.background=null;
+			}
+		}
+	</script>
+</html>
